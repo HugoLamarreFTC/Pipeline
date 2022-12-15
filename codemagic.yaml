@@ -3,6 +3,8 @@ workflows:
     name: iOS Native
     max_build_duration: 120
     instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: Touchtune Codemagic App Store key
     environment:
       ios_signing:
         distribution_type: app_store
@@ -10,11 +12,17 @@ workflows:
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"
+        APP_ID: 1659959037
       xcode: latest
       cocoapods: default
     scripts:
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
+        - name: Increment build number
+          script: |
+            cd $CM_BUILD_DIR
+            LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
+            agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: |
           xcode-project build-ipa \
@@ -32,3 +40,13 @@ workflows:
         notify:
           success: true
           failure: true
+      app_store_connect:
+        auth: integration
+
+        # Configuration related to TestFlight (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_testflight: true
+
+        # Configuration related to App Store (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_app_store: false

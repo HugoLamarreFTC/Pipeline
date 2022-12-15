@@ -5,11 +5,11 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       ios_signing:
-        distribution_type: ad_hoc
+        distribution_type: app_store
         bundle_identifier: com.tunes.Pipeline
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
-        XCODE_SCHEME: "Dev"
+        XCODE_SCHEME: "Pipeline"
       xcode: latest
       cocoapods: default
     scripts:

@@ -1,0 +1,33 @@
+workflows:
+  ios-native-quic-start:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.tunes.Pipeline
+      vars:
+        BUNDLE_ID: "com.tunes.Pipeline"
+        XCODE_SCHEME: "Pipeline"
+      xcode: latest
+    scripts:
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+            --project "Pipeline.xcodeproj"
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      email:
+        recipients:
+          - hugolamarre@yahoo.com
+        notify:
+          success: true
+          failure: false

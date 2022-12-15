@@ -5,20 +5,21 @@ workflows:
     instance_type: mac_mini_m1
     environment:
       ios_signing:
-        distribution_type: app_store
+        distribution_type: development
         bundle_identifier: com.tunes.Pipeline
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"
       xcode: latest
+      cocoapods: default
     scripts:
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
       - name: Build ipa for distribution
         script: |
           xcode-project build-ipa \
-            --project "Pipeline.xcodeproj"
-            --scheme "Pipeline"
+            --project "Pipeline.xcodeproj" \
+            --scheme "$XCODE_SCHEME"
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
@@ -30,4 +31,4 @@ workflows:
           - hugolamarre@yahoo.com
         notify:
           success: true
-          failure: false
+          failure: true

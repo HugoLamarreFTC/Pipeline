@@ -14,6 +14,9 @@
 		FE4A4BBA294A541D00527952 /* PipelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A4BB9294A541D00527952 /* PipelineTests.swift */; };
 		FE4A4BC4294A541D00527952 /* PipelineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A4BC3294A541D00527952 /* PipelineUITests.swift */; };
 		FE4A4BC6294A541D00527952 /* PipelineUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4A4BC5294A541D00527952 /* PipelineUITestsLaunchTests.swift */; };
+		FE514AF3294D62BE00B9DA15 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE514AF2294D62BE00B9DA15 /* ViewModel.swift */; };
+		FE514AF4294D62BE00B9DA15 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE514AF2294D62BE00B9DA15 /* ViewModel.swift */; };
+		FE514AF5294D62BE00B9DA15 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE514AF2294D62BE00B9DA15 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,7 @@
 		FE4A4BBF294A541D00527952 /* PipelineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipelineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE4A4BC3294A541D00527952 /* PipelineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineUITests.swift; sourceTree = "<group>"; };
 		FE4A4BC5294A541D00527952 /* PipelineUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipelineUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE514AF2294D62BE00B9DA15 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 				FE4A4BAB294A541D00527952 /* Assets.xcassets */,
 				FE4A4BAD294A541D00527952 /* Pipeline.entitlements */,
 				FE4A4BAE294A541D00527952 /* Preview Content */,
+				FE514AF2294D62BE00B9DA15 /* ViewModel.swift */,
 			);
 			path = Pipeline;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4A4BAA294A541C00527952 /* ContentView.swift in Sources */,
+				FE514AF3294D62BE00B9DA15 /* ViewModel.swift in Sources */,
 				FE4A4BA8294A541C00527952 /* PipelineApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE514AF4294D62BE00B9DA15 /* ViewModel.swift in Sources */,
 				FE4A4BBA294A541D00527952 /* PipelineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE4A4BC6294A541D00527952 /* PipelineUITestsLaunchTests.swift in Sources */,
+				FE514AF5294D62BE00B9DA15 /* ViewModel.swift in Sources */,
 				FE4A4BC4294A541D00527952 /* PipelineUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,7 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pipeline/Pipeline.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Pipeline/Preview Content\"";
 				DEVELOPMENT_TEAM = AGMG6D54R3;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -464,7 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pipeline/Pipeline.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"Pipeline/Preview Content\"";
 				DEVELOPMENT_TEAM = AGMG6D54R3;
 				ENABLE_HARDENED_RUNTIME = YES;

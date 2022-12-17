@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Pipeline
 
 final class PipelineUITests: XCTestCase {
 
@@ -37,5 +38,11 @@ final class PipelineUITests: XCTestCase {
                 XCUIApplication().launch()
             }
         }
+    }
+    
+    func testExampleTestInPipeline(){
+        let sut = ViewModel()
+        let newValue = 2
+        XCTAssertEqual(sut.addOneTo(value: 1), newValue)
     }
 }

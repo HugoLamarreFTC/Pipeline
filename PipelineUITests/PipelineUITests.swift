@@ -39,10 +39,4 @@ final class PipelineUITests: XCTestCase {
             }
         }
     }
-    
-    func testExampleTestInPipeline(){
-        let sut = ViewModel()
-        let newValue = 2
-        XCTAssertEqual(sut.addOneTo(value: 1), newValue)
-    }
 }

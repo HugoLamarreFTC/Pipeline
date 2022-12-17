@@ -31,5 +31,11 @@ final class PipelineTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testExampleTestInPipeline(){
+        let sut = ViewModel()
+        let newValue = 2
+        XCTAssertEqual(sut.addOneTo(value: 1), newValue)
+    }
 
 }

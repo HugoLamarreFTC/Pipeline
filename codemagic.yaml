@@ -18,6 +18,11 @@ workflows:
     scripts:
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+            --project "Pipeline.xcodeproj" \
+            --scheme "$XCODE_SCHEME"
       - name: iOS test
         script: | 
           xcode-project run-tests \
@@ -25,11 +30,6 @@ workflows:
           --scheme MyAwesomeApp \
           --device "iPhone 11"
         test_report: build/ios/test/*.xml
-      - name: Build ipa for distribution
-        script: |
-          xcode-project build-ipa \
-            --project "Pipeline.xcodeproj" \
-            --scheme "$XCODE_SCHEME"
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log

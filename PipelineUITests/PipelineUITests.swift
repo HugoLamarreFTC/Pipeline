@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Pipeline
 
 final class PipelineUITests: XCTestCase {
 

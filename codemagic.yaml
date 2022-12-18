@@ -18,6 +18,13 @@ workflows:
     scripts:
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
+      - name: iOS test
+        script: | 
+          xcode-project run-tests \
+          --workspace MyAwesomeApp.xcworkspace \
+          --scheme MyAwesomeApp \
+          --device "iPhone 11"
+        test_report: build/ios/test/*.xml
       - name: Build ipa for distribution
         script: |
           xcode-project build-ipa \
@@ -28,20 +35,3 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-    publishing:
-      email:
-        recipients:
-          - hugolamarre@yahoo.com
-        notify:
-          success: true
-          failure: true
-      app_store_connect:
-        auth: integration
-
-        # Configuration related to TestFlight (optional)
-        # Note: This action is performed during post-processing.
-        submit_to_testflight: true
-
-        # Configuration related to App Store (optional)
-        # Note: This action is performed during post-processing.
-        submit_to_app_store: false

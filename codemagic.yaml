@@ -7,7 +7,7 @@ workflows:
       app_store_connect: Touchtune Codemagic App Store key
     environment:
       ios_signing:
-        distribution_type: ad_hoc
+        distribution_type: ad-hoc
         bundle_identifier: com.tunes.Pipeline
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
@@ -40,3 +40,5 @@ publishing:
         firebase_token: $TEST_TOKEN
         ios:
           app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
+          groups:
+            - TTInternal

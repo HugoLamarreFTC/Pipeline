@@ -29,6 +29,7 @@ workflows:
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
 publishing:
+- name: Firebase distribution
   firebase:
     firebase_token: $FIREBASE_TOKEN
     ios:

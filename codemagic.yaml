@@ -31,7 +31,7 @@ workflows:
 publishing:
 - name: Firebase distribution
   firebase:
-    firebase_token: $FIREBASE_TOKEN
+    firebase_token: $TEST_TOKEN
     ios:
       app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
       groups:

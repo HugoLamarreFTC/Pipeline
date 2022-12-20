@@ -29,10 +29,16 @@ workflows:
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
 publishing:
-- name: Firebase distribution
-  firebase:
-    firebase_token: $TEST_TOKEN
-    ios:
-      app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
-      groups:
-        - TTInternal
+      # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
+      email:
+        recipients:
+          - hugolamarre@yahoo.com
+        notify:
+          success: true # To receive a notification when a build succeeds
+          failure: false # To not receive a notification when a build fails
+      firebase:
+        firebase_token: $TEST_TOKEN
+        ios:
+          app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
+          groups:
+            - TTInternal

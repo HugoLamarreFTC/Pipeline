@@ -7,7 +7,7 @@ workflows:
       app_store_connect: Touchtune Codemagic App Store key
     environment:
       ios_signing:
-        distribution_type: ad-hoc
+        distribution_type: 'ad_hoc'
         bundle_identifier: com.tunes.Pipeline
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"

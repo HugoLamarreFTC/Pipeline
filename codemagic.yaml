@@ -8,7 +8,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: 'ad_hoc'
-        bundle_identifier: com.tunes.Pipeline
+        bundle_identifier: "com.tunes.Pipeline"
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"

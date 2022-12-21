@@ -13,6 +13,7 @@ workflows:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"
         APP_ID: 1659959037
+        PROVISIONING_PROFILE: AdHocProvProfilePipeline
         CERTIFICATE: touchtunes
         CERTIFICATE_PASSWORD: "touchtunes"
       xcode: latest

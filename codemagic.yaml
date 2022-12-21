@@ -4,9 +4,6 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
-      ios_signing:
-        distribution_type: 'ad_hoc'
-        bundle_identifier: "com.tunes.Pipeline"
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"

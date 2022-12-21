@@ -4,6 +4,11 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m1
     environment:
+      ios_signing:
+        provisioning_profiles:
+          - AdHocProvProfilePipeline
+        certificates:
+          - touchtunes
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"

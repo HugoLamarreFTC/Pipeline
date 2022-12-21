@@ -6,13 +6,14 @@ workflows:
     environment:
       ios_signing:
         provisioning_profiles:
-          - AdHocProvProfilePipeline
+          - profile_reference
         certificates:
           - touchtunes
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"
         APP_ID: 1659959037
+        CERTIFICATE_PASSWORD: "touchtunes"
       xcode: latest
     scripts:
     - name: Add provisioning profiles
@@ -30,7 +31,7 @@ workflows:
         keychain initialize
         keychain add-certificates \
             --certificate /tmp/certificate.p12 \
-            --certificate-password ${"touchtunes"}
+            --certificate-password ${CERTIFICATE_PASSWORD?}
     - name: Set up code signing settings on Xcode project
       script: xcode-project use-profiles
     - name: Build ipa for distribution

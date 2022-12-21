@@ -33,7 +33,7 @@ workflows:
         xcode-project build-ipa \
           --project "Pipeline.xcodeproj" \
           --scheme "$XCODE_SCHEME"
-  artifacts:
+    artifacts:
         - build/ios/ipa/*.ipa
 publishing:
       # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email

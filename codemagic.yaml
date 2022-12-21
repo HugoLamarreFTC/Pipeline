@@ -33,6 +33,7 @@ publishing:
       email:
         recipients:
           - hugolamarre@yahoo.com
+          - forthemcreation@gmail.com
         notify:
           success: true # To receive a notification when a build succeeds
           failure: true # To not receive a notification when a build fails
@@ -41,4 +42,4 @@ publishing:
         ios:
           app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
           groups:
-            - TTInternal
+            - externals

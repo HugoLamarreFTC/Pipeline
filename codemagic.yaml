@@ -29,10 +29,11 @@ workflows:
     - name: Set up code signing settings on Xcode project
       script: xcode-project use-profiles
     - name: Build ipa for distribution
-      script: xcode-project build-ipa \
-                --project "Pipeline.xcodeproj" \
-                  --scheme "${XCODE_SCHEME?}"
-      artifacts:
+      script: |
+        xcode-project build-ipa \
+          --project "Pipeline.xcodeproj" \
+          --scheme "$XCODE_SCHEME"
+  artifacts:
         - build/ios/ipa/*.ipa
 publishing:
       # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email

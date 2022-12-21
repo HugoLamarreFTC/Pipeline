@@ -1,10 +1,8 @@
 workflows:
-  ios-native-quic-start:
-    name: iOS Native
+  my-test-workflow:
+    name: iOS test
     max_build_duration: 120
     instance_type: mac_mini_m1
-    integrations:
-      app_store_connect: Touchtune Codemagic App Store key
     environment:
       ios_signing:
         distribution_type: 'ad_hoc'
@@ -14,20 +12,31 @@ workflows:
         XCODE_SCHEME: "Pipeline"
         APP_ID: 1659959037
       xcode: latest
-      cocoapods: default
     scripts:
-      - name: Set up provisioning profiles settings on Xcode project
-        script: xcode-project use-profiles
-      - name: Build ipa for distribution
-        script: |
-          xcode-project build-ipa \
-            --project "Pipeline.xcodeproj" \
-            --scheme "$XCODE_SCHEME"
-    artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    - name: Add provisioning profiles
+      script: |
+        set -e # exit on first failed command
+
+        PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+        mkdir -p "$PROFILES_HOME"
+        echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
+    - name: Add signing certificate
+      script: |
+        set -e # exit on first failed command
+
+        echo ${CERTIFICATE?} | base64 --decode > /tmp/certificate.p12
+        keychain initialize
+        keychain add-certificates \
+            --certificate /tmp/certificate.p12 \
+            --certificate-password ${CERTIFICATE_PASSWORD?}
+    - name: Set up code signing settings on Xcode project
+      script: xcode-project use-profiles
+    - name: Build ipa for distribution
+      script: xcode-project build-ipa \
+                --project "Pipeline.xcodeproj" \
+                  --scheme "${XCODE_SCHEME?}"
+  artifacts:
+    - build/ios/ipa/*.ipa
 publishing:
       # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
       email:

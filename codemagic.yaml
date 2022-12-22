@@ -1,60 +1,39 @@
 workflows:
   my-test-workflow:
     name: iOS test
-    max_build_duration: 120
-    instance_type: mac_mini_m1
     environment:
       ios_signing:
-        provisioning_profiles:
-          - AdHocProvProfilePipeline
-        certificates:
-          - touchtunes
+        distribution_type: ad_hoc
+        bundle_identifier: com.tunes.Pipeline
       vars:
         BUNDLE_ID: "com.tunes.Pipeline"
         XCODE_SCHEME: "Pipeline"
         APP_ID: 1659959037
-        PROVISIONING_PROFILE: AdHocProvProfilePipeline
-        CERTIFICATE: touchtunes
-        CERTIFICATE_PASSWORD: "touchtunes"
       xcode: latest
-    scripts:
-    - name: Add provisioning profiles
-      script: |
-        set -e # exit on first failed command
-
-        PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
-        mkdir -p "$PROFILES_HOME"
-        echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
-    - name: Add signing certificate
-      script: |
-        set -e # exit on first failed command
-
-        echo ${CERTIFICATE?} | base64 --decode > /tmp/certificate.p12
-        keychain initialize
-        keychain add-certificates \
-            --certificate /tmp/certificate.p12 \
-            --certificate-password ${CERTIFICATE_PASSWORD?}
+      scripts:
     - name: Set up code signing settings on Xcode project
       script: xcode-project use-profiles
     - name: Build ipa for distribution
       script: |
         xcode-project build-ipa \
-          --project "Pipeline.xcodeproj" \
-          --scheme "$XCODE_SCHEME"
-    artifacts:
+        --project "Pipeline.xcodeproj" \
+        --scheme "$XCODE_SCHEME"
+      artifacts:
         - build/ios/ipa/*.ipa
+        - /tmp/xcodebuild_logs/*.log
+        - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+        - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
 publishing:
-      # See the following link for details about email publishing - https://docs.codemagic.io/publishing-yaml/distribution/#email
-      email:
-        recipients:
-          - hugolamarre@yahoo.com
-          - forthemcreation@gmail.com
-        notify:
-          success: true # To receive a notification when a build succeeds
-          failure: true # To not receive a notification when a build fails
-      firebase:
-        firebase_token: $TEST_TOKEN
-        ios:
-          app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
-          groups:
-            - externals
+  email:
+    recipients:
+      - hugolamarre@yahoo.com
+      - forthemcreation@gmail.com
+    notify:
+      success: true # To receive a notification when a build succeeds
+      failure: true # To not receive a notification when a build fails
+    firebase:
+      firebase_token: $FIREBASE_TOKEN
+      ios:
+        app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
+        groups:
+          - externals

@@ -10,15 +10,15 @@ workflows:
         XCODE_SCHEME: "Pipeline"
         APP_ID: 1659959037
       xcode: latest
-      scripts:
-    - name: Set up code signing settings on Xcode project
-      script: xcode-project use-profiles
-    - name: Build ipa for distribution
-      script: |
-        xcode-project build-ipa \
-        --project "Pipeline.xcodeproj" \
-        --scheme "$XCODE_SCHEME"
-      artifacts:
+    scripts:
+      - name: Set up code signing settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: |
+          xcode-project build-ipa \
+          --project "Pipeline.xcodeproj" \
+          --scheme "$XCODE_SCHEME"
+    artifacts:
         - build/ios/ipa/*.ipa
         - /tmp/xcodebuild_logs/*.log
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app

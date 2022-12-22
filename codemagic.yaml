@@ -26,17 +26,17 @@ workflows:
         - /tmp/xcodebuild_logs/*.log
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-publishing:
-  email:
-    recipients:
-      - hugolamarre@yahoo.com
-      - forthemcreation@gmail.com
-    notify:
-      success: true # To receive a notification when a build succeeds
-      failure: true # To not receive a notification when a build fails
-    firebase:
-      firebase_token: $FIREBASE_TOKEN
-      ios:
-        app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
-        groups:
-          - externals
+    publishing:
+      email:
+        recipients:
+          - hugolamarre@yahoo.com
+          - forthemcreation@gmail.com
+        notify:
+          success: true # To receive a notification when a build succeeds
+          failure: true # To not receive a notification when a build fails
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        ios:
+          app_id: 1:242557163833:ios:d98474bacf6f8f84fbb0e8
+          groups:
+            - externals
